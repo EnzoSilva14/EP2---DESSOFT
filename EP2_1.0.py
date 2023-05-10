@@ -1,3 +1,5 @@
+import random
+random.seed(1)
 def define_posicoes(linha, coluna, orientacao, tamanho):
     posicao = []
     if orientacao == 'vertical':
@@ -192,22 +194,21 @@ while jogando == True:
             jogando = False
 #Jogada do Oponente
         else:
-            import random
             lista_posicoes_oponente = []
             linha_ataque_oponente = random.randint(0, 9)
             coluna_ataque_oponente = random.randint(0, 9)
             posicao_ataque_oponente = [linha_ataque_oponente, coluna_ataque_oponente]
             if posicao_ataque_oponente not in lista_posicoes_oponente:
-                print('Seu oponente está atacando na linha LINHA e coluna COLUNA')
+                print('Seu oponente está atacando na linha {0} e coluna {1}'.format(linha_ataque_oponente, coluna_ataque_oponente))
             else:
                 verifica2 = False
                 while verifica2 == False:
-                    linha_ataque_oponente = random.randint(0, 10)
-                    coluna_ataque_oponente = random.randint(0, 10)
+                    linha_ataque_oponente = random.randint(0, 9)
+                    coluna_ataque_oponente = random.randint(0, 9)
                     posicao_ataque_oponente = [linha_ataque_oponente, coluna_ataque_oponente]
                     if posicao_ataque_oponente not in lista_posicoes_oponente:
                         verifica = True
-                        print('Seu oponente está atacando na linha LINHA e coluna COLUNA')
+                        print('Seu oponente está atacando na linha {0} e coluna {1}'.format(linha_ataque_oponente, coluna_ataque_oponente))
             lista_posicoes_oponente.append(posicao_ataque_oponente)
             tabuleiro_jogador = faz_jogada(tabuleiro_jogador, linha_ataque_oponente, coluna_ataque_oponente)  
             afundou2 = afundados(frota,tabuleiro_jogador)
