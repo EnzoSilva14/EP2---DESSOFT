@@ -190,5 +190,28 @@ while jogando == True:
         if afundou == 10:
             print('Parabéns! Você derrubou todos os navios do seu oponente!')
             jogando = False
-        
+#Jogada do Oponente
+        else:
+            import random
+            lista_posicoes_oponente = []
+            linha_ataque_oponente = random.randint(0, 9)
+            coluna_ataque_oponente = random.randint(0, 9)
+            posicao_ataque_oponente = [linha_ataque_oponente, coluna_ataque_oponente]
+            if posicao_ataque_oponente not in lista_posicoes_oponente:
+                print('Seu oponente está atacando na linha LINHA e coluna COLUNA')
+            else:
+                verifica2 = False
+                while verifica2 == False:
+                    linha_ataque_oponente = random.randint(0, 10)
+                    coluna_ataque_oponente = random.randint(0, 10)
+                    posicao_ataque_oponente = [linha_ataque_oponente, coluna_ataque_oponente]
+                    if posicao_ataque_oponente not in lista_posicoes_oponente:
+                        verifica = True
+                        print('Seu oponente está atacando na linha LINHA e coluna COLUNA')
+            lista_posicoes_oponente.append(posicao_ataque_oponente)
+            tabuleiro_jogador = faz_jogada(tabuleiro_jogador, linha_ataque_oponente, coluna_ataque_oponente)  
+            afundou2 = afundados(frota,tabuleiro_jogador)
+            if afundou2 == 10:
+                print ('Xi! O oponente derrubou toda a sua frota =(')
+                jogando = False
     
