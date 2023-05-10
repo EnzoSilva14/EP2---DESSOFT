@@ -153,6 +153,7 @@ frota_oponente = {
 tabuleiro_inimigo = posiciona_frota(frota_oponente)
 tabuleiro_jogador = posiciona_frota(frota)
 lista_posicoes = list()
+lista_posicoes_inimigo = list()
 
 jogando = True
 while jogando == True:
@@ -192,27 +193,25 @@ while jogando == True:
         if afundou == 10:
             print('Parabéns! Você derrubou todos os navios do seu oponente!')
             jogando = False
-#Jogada do Oponente
+
         else:
-            lista_posicoes_oponente = []
-            linha_ataque_oponente = random.randint(0, 9)
-            coluna_ataque_oponente = random.randint(0, 9)
-            posicao_ataque_oponente = [linha_ataque_oponente, coluna_ataque_oponente]
-            if posicao_ataque_oponente not in lista_posicoes_oponente:
-                print('Seu oponente está atacando na linha {0} e coluna {1}'.format(linha_ataque_oponente, coluna_ataque_oponente))
-            else:
-                verifica2 = False
-                while verifica2 == False:
-                    linha_ataque_oponente = random.randint(0, 9)
-                    coluna_ataque_oponente = random.randint(0, 9)
-                    posicao_ataque_oponente = [linha_ataque_oponente, coluna_ataque_oponente]
-                    if posicao_ataque_oponente not in lista_posicoes_oponente:
-                        verifica = True
-                        print('Seu oponente está atacando na linha {0} e coluna {1}'.format(linha_ataque_oponente, coluna_ataque_oponente))
-            lista_posicoes_oponente.append(posicao_ataque_oponente)
-            tabuleiro_jogador = faz_jogada(tabuleiro_jogador, linha_ataque_oponente, coluna_ataque_oponente)  
-            afundou2 = afundados(frota,tabuleiro_jogador)
-            if afundou2 == 10:
-                print ('Xi! O oponente derrubou toda a sua frota =(')
+            verifica2 = False
+            while verifica2 == False:
+                linha_ataque_inimigo = random.randint(0,9)
+                coluna_ataque_inimigo = random.randint(0,9)
+                posicao_ataque_inimigo = [linha_ataque_inimigo, coluna_ataque_inimigo]
+
+                if posicao_ataque_inimigo in lista_posicoes_inimigo:
+                    verifica2 = False
+
+                else:
+                    print('Seu oponente está atacando na linha {0} e coluna {1}'.format(linha_ataque_inimigo, coluna_ataque_inimigo))
+                    verifica2 = True
+                    lista_posicoes_inimigo.append(posicao_ataque_inimigo)
+                    tabuleiro_jogador = faz_jogada(tabuleiro_jogador, linha_ataque_inimigo, coluna_ataque_inimigo)
+                    afundou_inimigo = afundados(frota,tabuleiro_jogador)
+
+            if afundou_inimigo == 10:
+                print('Xi! O oponente derrubou toda a sua frota =(')
                 jogando = False
-    
+
