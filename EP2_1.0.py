@@ -1,5 +1,4 @@
 import random
-random.seed(1)
 def define_posicoes(linha, coluna, orientacao, tamanho):
     posicao = []
     if orientacao == 'vertical':
